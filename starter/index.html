@@ -26,9 +26,29 @@
         </div>
     </div>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
-    <script type="text/javascript" src="dom.js"></script>
+    <script type="text/javascript" src="https://codisteinborn.github.io/dom/dom.js"></script>
     <script type="text/javascript">
-    var time = moment().format('LT');
+
+        var setTime = function () {
+            var time = moment().format('LT');
+            $("#time").html(time);
+        }
+        setInterval(setTime, 1000);
+
+        var toggleHide = function () {
+            $("#todo-container").toggleClass("hide");
+        }
+        $("#todo-title").on("click", toggleHide);
+
+        var todoItem;
+        var todoList = [];
+
+        var updateTodo = function () {
+            todoItem = prompt("What do you have to do?");
+            todoList.push(todoItem);
+            document.querySelector("#todo").innerHTML += "<li>" + todoItem + "</li>";
+        }
+        $("#plus").on("click", updateTodo);
 
     </script>
 </body>
